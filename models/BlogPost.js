@@ -9,7 +9,11 @@ BlogPost.init(
     body: DataTypes.STRING
   },
   {
-    sequelize
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'blogpost',
   }
 );
 
