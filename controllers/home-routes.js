@@ -24,7 +24,7 @@ try {
     blogPost.get({ plain: true })
   );
 
-  res.render('all-blogPosts', { 
+  res.render('allBlogPosts', { 
     blogPosts 
   });
 } catch (err) {
