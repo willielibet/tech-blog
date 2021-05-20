@@ -42,7 +42,10 @@ try {
   });     
   if (blogPostData) {
     const blogPosts =  blogPostData.get({ plain: true });
-
+ 
+    //L14.2 @00:51:54
+    //pass blogPosts as an object to the render and not as an array.
+    //the object passed to render needs to be plain text as well.
     res.render('oneBlogPost', { blogPosts });
   } else {
     res.status(404).end();
