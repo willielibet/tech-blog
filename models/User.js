@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 //create user.
-//activity 23-Ins_Auth-Review models/User.js
+//activity 23-Ins_Auth-Review models/User.js.
 class User extends Model {
   //check password
   checkPassword(loginPw) {

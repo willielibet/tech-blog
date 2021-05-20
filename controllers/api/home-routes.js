@@ -1,6 +1,6 @@
 // activity 15 controllers
 // activity 16 controllers
-
+// 28-Stu-Mini_Project Main/homeRoutes.js
 const router = require('express').Router();
 const { BlogPost, Comment, User } = require('../models/');
 
@@ -12,12 +12,14 @@ router.get('/', async (req, res) => {
   try {
     const blogPostData = await BlogPost.findAll({ 
       //show data for user who created blogpost together with blogpost.
+      //Get all blog posts and JOIN with user data
       include: [{ model: User,
           attributes: ['username'],
      },
     ],
     });
-
+ 
+    // serialize data so the template can read it
     const blogPosts =  blogPostData.map((blogPost) => 
       blogPost.get({ plain: true })
     );
