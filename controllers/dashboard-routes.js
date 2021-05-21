@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { BlogPost } = require('../models/');
+const { Post } = require('../models/');
 const withAuth = require('../utils/auth');
 
 //activity 28 controllers/homeRoutes.js.
@@ -10,17 +10,17 @@ const withAuth = require('../utils/auth');
 //by our authentication middleware.
 router.get('/', withAuth, async (req, res) => {
   try {
-    const postBlogData = await BlogPost.findAll({
+    const postData = await Post.findAll({
       where: {
         userId: req.session.userId,
       },
     });
 
-    const blogPosts = postBlogData.map((blogPost) => blogPost.get({ plain: true }));
+    const posts = postData.map((post) => post.get({ plain: true }));
 
-    res.render('allBlogPostsAdmin', {
+    res.render('allPostsAdmin', {
       layout: 'dashboard',
-      blogPosts,
+      posts,
     });
   } catch (err) {
     res.redirect('login');
@@ -35,14 +35,14 @@ router.get('/new', withAuth, (req, res) => {
 
 router.get('/edit/:id', withAuth, async (req, res) => {
   try {
-    const postBlogData = await BlogPost.findByPk(req.params.id);
+    const postData = await post.findByPk(req.params.id);
 
-    if (postBlogData) {
-      const blogPost = postBlogData.get({ plain: true });
+    if (postData) {
+      const post = postData.get({ plain: true });
 
       res.render('edit-post', {
         layout: 'dashboard',
-        blogPost,
+        post,
       });
     } else {
       res.status(404).end();

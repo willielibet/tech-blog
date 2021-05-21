@@ -2,7 +2,7 @@
 // activity 16 controllers
 // 28-Stu-Mini_Project Main/homeRoutes.js
 const router = require('express').Router();
-const { BlogPost, Comment, User } = require('../models/');
+const { Post, Comment, User } = require('../models/');
 
 // WHEN I click on the homepage option
 // THEN I am taken to the homepage.
@@ -10,7 +10,7 @@ const { BlogPost, Comment, User } = require('../models/');
 // posts if any have been posted.
 router.get('/', async (req, res) => {
 try {
-  const blogPostData = await BlogPost.findAll({ 
+  const postData = await Post.findAll({ 
     //show data for user who created blogpost together with blogpost.
     //Get all blog posts and JOIN with user data
     include: [{ model: User,
@@ -20,33 +20,33 @@ try {
   });
 
   // serialize data so the template can read it
-  const blogPosts =  blogPostData.map((blogPost) => 
-    blogPost.get({ plain: true })
+  const posts =  postData.map((post) => 
+    post.get({ plain: true })
   );
 
-  res.render('allBlogPosts', { 
-    blogPosts 
+  res.render('allPosts', { 
+    posts 
   });
 } catch (err) {
   res.status(500).json(err);
 }
 });
 
-// GET one blogpost
-router.get('/blogpost/:id', async (req, res) => {
+// GET one post
+router.get('/post/:id', async (req, res) => {
 try {
-  const  blogPostData = await BlogPost.findByPk(req.params.id, {
+  const  postData = await Post.findByPk(req.params.id, {
       include: [{ model: User, model: Comment,
             attributes: ['username'], 
           }],
   });     
-  if (blogPostData) {
-    const blogPosts =  blogPostData.get({ plain: true });
+  if (postData) {
+    const posts =  postData.get({ plain: true });
  
     //L14.2 @00:51:54
-    //pass blogPosts as an object to the render and not as an array.
+    //pass posts as an object to the render and not as an array.
     //the object passed to render needs to be plain text as well.
-    res.render('oneBlogPost', { blogPosts });
+    res.render('onePost', { posts });
   } else {
     res.status(404).end();
   }

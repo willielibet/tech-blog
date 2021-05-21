@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { BlogPost } = require('../../models/');
+const { Post } = require('../../models/');
 const withAuth = require('../../utils/auth');
 
 //use withAuth middleware to prevent access to route.
@@ -10,7 +10,7 @@ router.post('/', withAuth, async (req, res) => {
 
 //create a new blog post.
 try {
-    const newBlogPost = await BlogPost.create({ 
+    const newPost = await Post.create({ 
             userId: req.session.userId });
 
     res.json(newBlogPost);
@@ -24,7 +24,7 @@ try {
     //this is array destructuring assignment in JS. 
     //suppose you have array [1, 2]. const [a] = [1, 2]; will 
     //assign variable a with value 1.
-    const [updatedRows] = await BlogPost.update(req.body, {
+    const [updatedRows] = await Post.update(req.body, {
         where: {
         id: req.params.id,
         },
@@ -45,7 +45,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     //this is array destructuring assignment in JS. 
     //suppose you have array [1, 2]. const [a] = [1, 2]; will 
     //assign variable a with value 1.
-    const [updatedRows] = BlogPost.destroy({
+    const [updatedRows] = Post.destroy({
         where: {
         id: req.params.id,
         },

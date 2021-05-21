@@ -9,33 +9,27 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-sm">
-        {{!-- <span class="navbar-brand ml-auto" style="color:MediumSeaGreen; font-size: 125%" href="#">Welcome to my
-            Professional Portfolio</span> --}}
-        <button class="navbar-toggler button-but mr-auto" data-toggle="collapse" data-target="#navbarMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<body class="flex-column min-100-vh">
+    <nav class="navbar">
+        <ul class="flex-row">
+            <li class="li-inline nav-item"><a href="/">Home</a></li>
+            <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="li-inline nav-item"><a href="#" id="logout-link">Logout</a></li>
+        </ul>
+    </nav>
+    <header class="hero">
+        <h1 class="app-title"><a href="/dashboard">Your Dashboard</a></h1>
+    </header>
 
-        <div class="collapse navbar-collapse mr-auto" id="navbarMenu">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="./" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="./dashboard" class="nav-link">Dashboard</a></li>
-                <li class="nav-item"><a href="./logout" class="nav-link">Logout</a></li>
-                <!-- <li class="nav-item"><a class="nav-link" href="#">Resume</a></li> -->
-            </ul>
-        </div>
-        <header>
-            <h1><a href="/dashboard">Your Dashboard</a></h1>
-        </header>
+    <main class="col-auto">
+        {{{body}}}
+    </main>
 
-        <main>
-            {{{body}}}
-        </main>
-
-        <footer>
-            <a href="/dashboard/new">➕ New Post</a>
-        </footer>
+    <footer class="footer flex-row justify-center">
+        <a href="/dashboard/new">➕ New Post</a>
+    </footer>
 </body>
+
+<script src="/js/logout.js"></script>
 
 </html>
