@@ -11,11 +11,11 @@ Comment.init(
     }
   },
   {
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'comment'
+    sequelize
+    // timestamps: false,
+    // freezeTableName: true,
+    // underscored: true,
+    // modelName: 'comment'
   }
 );
 

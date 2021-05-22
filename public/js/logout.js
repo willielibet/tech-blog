@@ -1,21 +1,18 @@
+// activity 28 Main/pulbic/js/logout.js
 
-
-
-const logoutFormHandler = async function() {
+const logout = async () => {
     const response = await fetch('/api/user/logout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
     });
   
     if (response.ok) {
-        //send user to landing page
       document.location.replace('/');
     } else {
-      alert('Failed to log out');
+      alert(response.statusText);
     }
   };
   
-  document
-  .querySelector('#logout-user')
-  .addEventListener('click', logoutFormHandler);
+  document.querySelector('#logout-user').addEventListener('click', logout);
   
+
