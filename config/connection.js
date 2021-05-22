@@ -1,6 +1,11 @@
-require('dotenv').config();
 
-const Sequelize = require('sequelize');
+//========================================================
+// require('dotenv').config();
+
+// const Sequelize = require('sequelize');
+//========================================================
+
+
 
 // create connection to our db
 // const sequelize = process.env.JAWSDB_URL
@@ -11,5 +16,18 @@ const Sequelize = require('sequelize');
 //       port: 3306
 //     });
 
-const sequelize = new Sequelize(process.env.MYSQL_URL)
+
+//========================================================
+// const sequelize = new Sequelize(process.env.MYSQL_URL)
+// module.exports = sequelize;
+//========================================================
+
+require("dotenv").config();
+
+const Sequelize = require("sequelize");
+
+const sequelize = process.env.JAWSDB_URL
+  ? new Sequelize(process.env.JAWSDB_URL)
+  : new Sequelize(process.env.MYSQL_URL);
+
 module.exports = sequelize;
